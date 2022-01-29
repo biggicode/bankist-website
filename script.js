@@ -86,6 +86,22 @@ tabsContainer.addEventListener('click', e => {
 
 //Menu fade animation
 
+const handleLinkAnimation = function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const clicked = e.target;
+    const siblings = clicked.closest('.nav').querySelectorAll('.nav__link');
+    const logo = clicked.closest('.nav').querySelector('img');
+
+    siblings.forEach(link => {
+      if (link !== clicked) link.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+};
+
+nav.addEventListener('mouseover', handleLinkAnimation.bind(0.5));
+nav.addEventListener('mouseout', handleLinkAnimation.bind(1));
+
 // //Create random color
 // const randomInt = (min, max) =>
 //   Math.trunc(Math.random() * (max - min + 1) + min);
