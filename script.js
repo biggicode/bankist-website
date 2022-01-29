@@ -48,3 +48,12 @@ document.querySelector('.btn--close-cookie').addEventListener('click', () => {
 btnScrollTo.addEventListener('click', function () {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+//Create random color
+const randomInt = (min, max) =>
+  Math.trunc(Math.random() * (max - min + 1) + min);
+
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+
+console.log(randomColor());
