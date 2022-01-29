@@ -118,3 +118,21 @@ nav.addEventListener('mouseout', handleLinkAnimation.bind(1));
 // document.querySelector('.nav').addEventListener('click', function (e) {
 //   this.style.backgroundColor = randomColor();
 // });
+
+//Intersaction Observer API
+const navRealHeight = nav.getBoundingClientRect().height;
+
+const stayTop = function (entries) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+};
+
+const observer = new IntersectionObserver(stayTop, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navRealHeight}px`,
+});
+
+observer.observe(header);
