@@ -193,10 +193,6 @@ const btnRight = document.querySelector('.slider__btn--right');
 let curSlide = 0;
 let maxSlides = allSlides.length;
 
-const slider = document.querySelector('.slider');
-slider.style.transform = 'scale(0.5)';
-slider.style.overflow = 'visible';
-
 const moveSlides = function (nSlide) {
   allSlides.forEach(
     (slide, index) =>
