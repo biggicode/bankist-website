@@ -240,4 +240,10 @@ document.addEventListener('keydown', function (e) {
   e.key === 'ArrowRight' && nextSlide();
 });
 
-dotsContainer.addEventListener('click', function (e) {});
+dotsContainer.addEventListener('click', function (e) {
+  if (e.target.classList.contains('dots__dot')) {
+    console.log('dot');
+    const { slide } = e.target.dataset;
+    moveSlides(slide);
+  }
+});
