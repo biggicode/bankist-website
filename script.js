@@ -189,9 +189,20 @@ lazyImages.forEach(img => imgObserver.observe(img));
 const allSlides = document.querySelectorAll('.slide');
 const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
+const dotsContainer = document.querySelector('.dots');
 
 let curSlide = 0;
 let maxSlides = allSlides.length;
+
+const createDots = function () {
+  allSlides.forEach((_, i) => {
+    dotsContainer.insertAdjacentHTML(
+      'beforeend',
+      `<button class="dots__dot" data-slide="${i}"></button>"`
+    );
+  });
+};
+createDots();
 
 const moveSlides = function (nSlide) {
   allSlides.forEach(
