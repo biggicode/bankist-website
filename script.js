@@ -183,3 +183,89 @@ const imgObserver = new IntersectionObserver(loadImg, {
 });
 
 lazyImages.forEach(img => imgObserver.observe(img));
+
+//Slider component
+const sliderComponent = function () {
+  const allSlides = document.querySelectorAll('.slide');
+  const btnLeft = document.querySelector('.slider__btn--left');
+  const btnRight = document.querySelector('.slider__btn--right');
+  const dotsContainer = document.querySelector('.dots');
+
+  let curSlide = 0;
+  let maxSlides = allSlides.length;
+
+  const createDots = function () {
+    allSlides.forEach((_, i) => {
+      dotsContainer.insertAdjacentHTML(
+        'beforeend',
+        `<button class="dots__dot" data-slide="${i}"></button>"`
+      );
+    });
+  };
+
+  const makeDotActive = function (slide) {
+    document.querySelectorAll('.dots__dot').forEach(dot => {
+      dot.classList.remove('dots__dot--active');
+    });
+
+    document
+      .querySelector(`.dots__dot[data-slide="${slide}"]`)
+      .classList.add('dots__dot--active');
+  };
+
+  const moveSlides = function (nSlide) {
+    allSlides.forEach(
+      (slide, index) =>
+        (slide.style.transform = `translateX(${(index - nSlide) * 100}%)`)
+    );
+  };
+
+  const nextSlide = function () {
+    if (curSlide === maxSlides - 1) {
+      curSlide = 0;
+    } else {
+      curSlide++;
+    }
+
+    moveSlides(curSlide);
+    makeDotActive(curSlide);
+  };
+
+  const previousSlide = function () {
+    if (curSlide === 0) {
+      curSlide = maxSlides - 1;
+    } else {
+      curSlide--;
+    }
+
+    moveSlides(curSlide);
+    makeDotActive(curSlide);
+  };
+
+  //Initialization
+  const init = function () {
+    moveSlides(0);
+    createDots();
+    makeDotActive(0);
+  };
+  init();
+
+  //Event handler
+  btnRight.addEventListener('click', nextSlide);
+  btnLeft.addEventListener('click', previousSlide);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') previousSlide();
+    e.key === 'ArrowRight' && nextSlide();
+  });
+
+  dotsContainer.addEventListener('click', function (e) {
+    if (e.target.classList.contains('dots__dot')) {
+      console.log('dot');
+      const { slide } = e.target.dataset;
+      moveSlides(slide);
+      makeDotActive(slide);
+    }
+  });
+};
+sliderComponent();
