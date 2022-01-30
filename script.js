@@ -197,15 +197,20 @@ const slider = document.querySelector('.slider');
 slider.style.transform = 'scale(0.5)';
 slider.style.overflow = 'visible';
 
-allSlides.forEach(
-  (slide, index) => (slide.style.transform = `translateX(${index * 100}%)`)
-);
-
-btnRight.addEventListener('click', function () {
-  curSlide++;
-
+const moveSlides = function (nSlide) {
   allSlides.forEach(
     (slide, index) =>
-      (slide.style.transform = `translateX(${(index - curSlide) * 100}%)`)
+      (slide.style.transform = `translateX(${(index - nSlide) * 100}%)`)
   );
+};
+moveSlides(0);
+
+btnRight.addEventListener('click', function () {
+  if (curSlide === maxSlides - 1) {
+    curSlide = 0;
+  } else {
+    curSlide++;
+  }
+
+  moveSlides(curSlide);
 });
