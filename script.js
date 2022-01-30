@@ -168,6 +168,8 @@ const loadImg = function (entries, observer) {
   console.log(entry);
 
   if (!entry.isIntersecting) return;
+  //Add corect src
+  entry.target.src = entry.target.dataset.src;
 };
 
 const imgObserver = new IntersectionObserver(loadImg, { root: null });
