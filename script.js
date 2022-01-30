@@ -183,3 +183,17 @@ const imgObserver = new IntersectionObserver(loadImg, {
 });
 
 lazyImages.forEach(img => imgObserver.observe(img));
+
+//Slider component
+
+const allSlides = document.querySelectorAll('.slide');
+const btnLeft = document.querySelector('.slider-button--left');
+const btnRight = document.querySelector('.slider-button--right');
+
+const slider = document.querySelector('.slider');
+slider.style.transform = 'scale(0.5)';
+slider.style.overflow = 'visible';
+
+allSlides.forEach(
+  (slide, index) => (slide.style.transform = `translateX(${index * 100}%)`)
+);
