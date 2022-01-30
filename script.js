@@ -205,7 +205,7 @@ const moveSlides = function (nSlide) {
 };
 moveSlides(0);
 
-btnRight.addEventListener('click', function () {
+const nextSlide = function () {
   if (curSlide === maxSlides - 1) {
     curSlide = 0;
   } else {
@@ -213,4 +213,17 @@ btnRight.addEventListener('click', function () {
   }
 
   moveSlides(curSlide);
-});
+};
+
+const previousSlide = function () {
+  if (curSlide === 0) {
+    curSlide = maxSlides - 1;
+  } else {
+    curSlide--;
+  }
+
+  moveSlides(curSlide);
+};
+
+btnRight.addEventListener('click', nextSlide);
+btnLeft.addEventListener('click', previousSlide);
