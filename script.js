@@ -187,8 +187,11 @@ lazyImages.forEach(img => imgObserver.observe(img));
 //Slider component
 
 const allSlides = document.querySelectorAll('.slide');
-const btnLeft = document.querySelector('.slider-button--left');
-const btnRight = document.querySelector('.slider-button--right');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
+
+let curSlide = 0;
+let maxSlides = allSlides.length;
 
 const slider = document.querySelector('.slider');
 slider.style.transform = 'scale(0.5)';
@@ -197,3 +200,12 @@ slider.style.overflow = 'visible';
 allSlides.forEach(
   (slide, index) => (slide.style.transform = `translateX(${index * 100}%)`)
 );
+
+btnRight.addEventListener('click', function () {
+  curSlide++;
+
+  allSlides.forEach(
+    (slide, index) =>
+      (slide.style.transform = `translateX(${(index - curSlide) * 100}%)`)
+  );
+});
